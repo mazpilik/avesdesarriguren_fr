@@ -10,17 +10,17 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 
-import { AdminHome } from './ui/pages/AdminHome';
 import { Home } from './ui/pages/Home';
 import { Login } from './ui/pages/Login';
+import { Dashboard } from './ui/pages/Admin/Dashboard';
 
 const App: FC = () => (
   <BrowserRouter>
     <RecoilRoot>
       <Routes>
         <Route path={routes.ACCESS_POINT} element={<Home />} />
-        <Route path={routes.ADMIN_ACCESS_POINT} element={<AdminHome />} />
         <Route path={routes.LOGIN} element={<Login />} />
+        <Route path={routes.ADMIN_DASHBOARD} element={<Dashboard />} />
       </Routes>
     </RecoilRoot>
   </BrowserRouter>
