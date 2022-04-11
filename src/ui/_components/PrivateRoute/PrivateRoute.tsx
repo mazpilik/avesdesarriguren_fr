@@ -1,22 +1,23 @@
 import React, { FC } from 'react';
 import isNill from 'lodash/isNil';
-import { Navigate } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 
-import { userAtom } from 'src/ui/_functions/atoms/atoms';
+import { ProgressSpinner } from 'primereact/progressspinner';
+
+import { useUserHook } from 'src/ui/_functions/hooks/useUserHook';
 
 interface Props {
   component: React.ComponentType<any>;
 }
 
 export const PrivateRoute: FC<Props> = ({ component: RouteComponent }) => {
-  const user: any = useRecoilValue(userAtom);
-
-  console.info('user', user);
+  const userUtils = useUserHook();
+  const user: any = userUtils.getUserFromSessionStorage();
 
   if (!isNill(user) && user.token) {
     return <RouteComponent />;
   }
 
-  return <Navigate to="/" />;
+  // return <Navigate to="/login" />;
+
+  return <ProgressSpinner style={{ width: '100%', height: '100%' }} />;
 };
