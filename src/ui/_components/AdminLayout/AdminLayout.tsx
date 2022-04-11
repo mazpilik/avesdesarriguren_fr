@@ -2,8 +2,11 @@ import React from 'react';
 
 import { Header } from './_components/Header';
 import { Footer } from './_components/Footer';
+import { MainMenu } from './_components/MainMenu';
 
-import { AdminLayoutWrapper, BodyWrapper } from './AdminLayout.styles';
+import {
+  AdminLayoutWrapper, BodyWrapper, ContentWrapper,
+} from './AdminLayout.styles';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -12,8 +15,11 @@ interface AdminLayoutProps {
 
 export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, sectionTitle }) => (
   <AdminLayoutWrapper>
-    <Header sectionTitle={sectionTitle} />
-    <BodyWrapper>{children}</BodyWrapper>
-    <Footer />
+    <MainMenu />
+    <ContentWrapper>
+      <Header sectionTitle={sectionTitle} />
+      <BodyWrapper>{children}</BodyWrapper>
+      <Footer />
+    </ContentWrapper>
   </AdminLayoutWrapper>
 );
