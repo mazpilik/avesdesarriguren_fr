@@ -22,5 +22,11 @@ export const useUserHook = () => {
       setUserState(null);
       sessionStorage.removeItem('user');
     },
+    recoverUserFromStorage: () => {
+      const user = sessionStorage.getItem('user');
+      if (user) {
+        setUserState(JSON.parse(user));
+      }
+    },
   };
 };
