@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
-import { trim } from 'lodash';
+import { isNil, trim } from 'lodash';
 // eslint-disable-next-line camelcase
 import jwt_decode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
@@ -13,6 +14,8 @@ import { userAtom } from 'src/ui/_functions/atoms/atoms';
 import { userService } from 'src/services/userService';
 
 import { useUserHook } from 'src/ui/_functions/hooks/useUserHook';
+
+import { routes } from 'src/conf/routes';
 
 import {
   ActionButtonsWrapper, FieldWrapper, LoginPageWrapper, LoginWrapper,
@@ -28,7 +31,9 @@ interface decodedTokenProps {
 
 export const Login = () => {
   const userUtils: any = useUserHook();
-  const user = useRecoilValue(userAtom);
+  const user: any = useRecoilValue(userAtom);
+  const navigate = useNavigate();
+
   const [loginState, setLoginState] = React.useState<LoginProps>({
     name: '',
     password: '',
@@ -74,7 +79,9 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    console.info('user', user);
+    if (!isNil(user) && user.token) {
+      navigate(routes.ADMIN_DASHBOARD);
+    }
   }, [user]);
 
   return (
