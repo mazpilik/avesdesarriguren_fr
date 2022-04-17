@@ -29,5 +29,9 @@ export const useUserHook = () => {
         setUserState(JSON.parse(user));
       }
     },
+    logout: () => {
+      setUserState(defUser);
+      sessionStorage.removeItem('user');
+    },
   };
 };

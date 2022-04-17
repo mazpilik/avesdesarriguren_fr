@@ -15,16 +15,22 @@ import { Home } from './ui/pages/Home';
 import { Login } from './ui/pages/Login';
 import { PrivateRoute } from './ui/_components/PrivateRoute/PrivateRoute';
 import { UserChecker } from './ui/_components/UserChecker/UserChecker';
+import { ThemeProviderWrapper } from './ui/theme/ThemeProviderWrapper';
+import { LangProvider } from './ui/_components/LangProvider/LangProvider';
 
 const App: FC = () => (
   <BrowserRouter>
     <RecoilRoot>
       <UserChecker />
-      <Routes>
-        <Route path={routes.ACCESS_POINT} element={<Home />} />
-        <Route path={routes.LOGIN} element={<Login />} />
-        <Route path={routes.ADMIN_DASHBOARD} element={<PrivateRoute component={Dashboard} />} />
-      </Routes>
+      <ThemeProviderWrapper>
+        <LangProvider>
+          <Routes>
+            <Route path={routes.ACCESS_POINT} element={<Home />} />
+            <Route path={routes.LOGIN} element={<Login />} />
+            <Route path={routes.ADMIN_DASHBOARD} element={<PrivateRoute component={Dashboard} />} />
+          </Routes>
+        </LangProvider>
+      </ThemeProviderWrapper>
     </RecoilRoot>
   </BrowserRouter>
 );

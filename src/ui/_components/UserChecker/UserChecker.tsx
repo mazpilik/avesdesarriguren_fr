@@ -11,7 +11,7 @@ export const UserChecker = () => {
   const user: any = useRecoilValue(userAtom);
 
   useEffect(() => {
-    if (isNil(user)) {
+    if (isNil(user) || (user.name === '' && user.token === '')) {
       userUtils.recoverUserFromStorage();
     }
   }, []);
