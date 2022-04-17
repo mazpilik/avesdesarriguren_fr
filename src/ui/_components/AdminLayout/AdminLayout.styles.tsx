@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const BodyWrapper = styled.div`
-  padding: 1rem;
+  padding: 4rem;
 `;
 export const ContentWrapper = styled.div``;
 export const AdminLayoutWrapper = styled.div`
