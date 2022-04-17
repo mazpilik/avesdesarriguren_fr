@@ -14,6 +14,7 @@ export const AdminLayoutWrapper = styled.div`
     width: 100%;
     ${BodyWrapper} {
       flex: auto 1;
+      background-color: ${({ theme }) => theme.admin.bodyBackground};
     }
   }
 `;
