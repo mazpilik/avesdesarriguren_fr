@@ -8,6 +8,8 @@ export const Title = styled.h4`
   justify-content: center;
   align-items: center;
   height: 10%;
+  font-size: 4rem;
+  margin-bottom: 5rem;
 `;
 export const MenuLink = styled(Link)`
   display: flex;
@@ -16,30 +18,36 @@ export const MenuLink = styled(Link)`
   i{
     margin-right: 0.5rem;
   }
-  color: #666;
+  color: ${({ theme }) => theme.admin.mainMenuText};
 `;
 export const MenuItem = styled.div`
   padding: 1rem;
-  border-bottom: 1px solid #ccc;
+  font-size: 1.5rem;
 `;
 export const Menu = styled.div`
   display: flex;
   flex-direction: column;
   flex: auto 1;
-  background-color: #f8f9fa;
 `;
-export const MenuWrapper = styled.div`
+export const MenuEnd = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+`;
+interface MenuWrapperProps {
+  isOpen: boolean;
+}
+export const MenuWrapper = styled.div<MenuWrapperProps>`
   display: flex;
   flex-direction: column;
   flex: auto 1;
-  width: 200px;
-  border-right: 1px solid #ccc;
-  .megaMenu{
-    flex: auto 1;
-    ul{
-      li{
-        display: inline-block;
-      }
-    }
+  width: ${({ isOpen }) => (isOpen ? '288px' : '96px')};
+  background-color: ${({ theme }) => theme.admin.mainMenuBack};
+  color: ${({ theme }) => theme.admin.mainMenuText};
+  ${Menu} {
+    align-items: ${({ isOpen }) => (isOpen ? 'flex-start' : 'center')};
+  }
+  ${MenuEnd} {
+    align-items: ${({ isOpen }) => (isOpen ? 'flex-start' : 'center')};
   }
 `;
