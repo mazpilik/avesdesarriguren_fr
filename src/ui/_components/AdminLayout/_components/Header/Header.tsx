@@ -1,34 +1,53 @@
 import React, { FC } from 'react';
 
-import { Button } from 'primereact/button';
-import { BreadCrumb } from 'primereact/breadcrumb';
-
 import { useRecoilValue } from 'recoil';
 import { User } from 'src/domain/User';
 
+import { faPowerOff } from '@fortawesome/free-solid-svg-icons';
+
+import { Avatar } from 'primereact/avatar';
+
 import { userAtom } from 'src/ui/_functions/atoms/atoms';
+
+import { useUserHook } from 'src/ui/_functions/hooks/useUserHook';
 
 import {
   HeaderWrapper,
   TitleWrapper,
   UserWrapper,
-  UserName,
+  UserCard,
+  SectionTitle,
+  DateWrapper,
+  UserNameWrapper,
+  LogoutBtn,
 } from './Header.styles';
 
 interface HeaderProps {
   sectionTitle: string;
 }
 
-export const Header: FC<HeaderProps> = () => {
+export const Header: FC<HeaderProps> = ({ sectionTitle }) => {
   const user: User = useRecoilValue(userAtom);
+  const userUtils = useUserHook();
+
   return (
     <HeaderWrapper>
       <TitleWrapper>
-        <BreadCrumb model={[{ label: 'Dashboard', url: '/shkud' }]} />
+        <SectionTitle>
+          {sectionTitle}
+        </SectionTitle>
+        <DateWrapper>
+          {new Date().toLocaleDateString('es-ES')}
+        </DateWrapper>
       </TitleWrapper>
       <UserWrapper>
-        <UserName>{`Welcome ${user.name}`}</UserName>
-        <Button>Logout</Button>
+        <UserCard>
+          <Avatar className="mr-2" size="large" shape="circle" image={`images/users/${user.name}.jpg`} />
+          <UserNameWrapper>
+            {user.name}
+          </UserNameWrapper>
+        </UserCard>
+        <LogoutBtn onClick={() => userUtils.logout()} icon={faPowerOff} />
       </UserWrapper>
     </HeaderWrapper>
   );
