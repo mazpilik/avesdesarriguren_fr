@@ -15,14 +15,15 @@ export const MenuLink = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
-  i{
-    margin-right: 0.5rem;
-  }
   color: ${({ theme }) => theme.admin.mainMenuText};
+  cursor: pointer;
+  svg{
+    margin-right: 1rem;
+  }
 `;
 export const MenuItem = styled.div`
-  padding: 1rem;
   font-size: 1.5rem;
+  margin-bottom: 2rem;
 `;
 export const Menu = styled.div`
   display: flex;
@@ -34,6 +35,7 @@ export const MenuEnd = styled.div`
   flex-direction: column;
   font-size: 1.5rem;
   height: 15%;
+  cursor: pointer;
 `;
 interface MenuWrapperProps {
   isOpen: boolean;
@@ -49,8 +51,10 @@ export const MenuWrapper = styled.div<MenuWrapperProps>`
   color: ${({ theme }) => theme.admin.mainMenuText};
   ${Menu} {
     align-items: ${({ isOpen }) => (isOpen ? 'flex-start' : 'center')};
+    padding-left: ${({ isOpen }) => (isOpen ? '1.5rem' : '0')};
   }
   ${MenuEnd} {
     align-items: ${({ isOpen }) => (isOpen ? 'flex-start' : 'center')};
+    padding-left: ${({ isOpen }) => (isOpen ? '2.25rem' : '0')};
   }
 `;
