@@ -17,6 +17,14 @@ export const AddBtn = styled(AdminBtn)`
     }
   
 `;
+export const SaveBtn = styled(AdminBtn)`
+  
+    background-color: ${({ theme }) => theme.admin.AddBtnColor.default};
+    &:hover{
+      background-color: ${({ theme }) => theme.admin.AddBtnColor.default};
+    }
+  
+`;
 export const EditBtn = styled(AdminBtn)`
    background-color: ${({ theme }) => theme.admin.EditBtnColor.default};
     &:hover{
