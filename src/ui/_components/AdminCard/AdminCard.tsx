@@ -1,23 +1,25 @@
 import React, { FC } from 'react';
 
-import { Card } from 'primereact/card';
+import { AdminCardWrapper } from './AdminCard.styles';
 
 interface IAdminCard {
   title?: string;
   subTitle?: string;
   className?: string;
+  footer?: any;
 }
 
 export const AdminCard: FC<IAdminCard> = ({
-  title, subTitle, className, children,
+  title, subTitle, className, children, footer,
 }) => (
-  <Card className={className} title={title} subTitle={subTitle}>
+  <AdminCardWrapper className={className} title={title} subTitle={subTitle} footer={footer}>
     {children}
-  </Card>
+  </AdminCardWrapper>
 );
 
 AdminCard.defaultProps = {
   title: '',
   subTitle: '',
   className: '',
+  footer: null,
 };

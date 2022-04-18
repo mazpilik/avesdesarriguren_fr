@@ -3,5 +3,13 @@
   "birds": "Aves",
   "dashboard": "Dashboard",
   "news": "Noticias",
-  "users": "Usuarios"
+  "users": "Usuarios",
+  "logout": "Salir",
+  "login": "Iniciar sesión",
+  "add": "Añadir",
+  "edit": "Editar",
+  "delete": "Eliminar",
+  "save": "Guardar",
+  "cancel": "Cancelar",
+  "view": "Ver"
 }
