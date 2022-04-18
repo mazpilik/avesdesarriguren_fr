@@ -48,7 +48,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 1rem;
+  padding: 1rem 4rem;
   width: 100%;
   height: 106px;
 `;
