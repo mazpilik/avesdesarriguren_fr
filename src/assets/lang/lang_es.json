@@ -24,7 +24,14 @@
   "dashboardFamilyTitle": "Familias",
   "dashboardFamilySubTitle": "Create/Read/Update/Delete",
   "dashboardFamilyContent": "<p>Busca, crea y actualiza las familias de aves</p>",
-  "dashboardGenderTitle": "Generos",
-  "dashboardGenderSubTitle": "Create/Read/Update/Delete",
-  "dashboardGenderContent": "<p>Busca, crea y actualiza los géneros de aves</p>"
+  "dashboardOrderTitle": "Generos",
+  "dashboardOrderSubTitle": "Create/Read/Update/Delete",
+  "dashboardOrderContent": "<p>Busca, crea y actualiza los ordens de aves</p>",
+  "addBirdTitle": "Añadir ave",
+  "addFamilyTitle": "Añadir familia",
+  "addOrderTitle": "Añadir orden",
+  "addNewsTitle": "Añadir noticia",
+  "addUserTitle": "Añadir usuario",
+  "saveBtn": "Guardar",
+  "orderLabel": "Orden"
 }
