@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 export const MainContent = styled.div`
   width: 60%;
-  .adminCard{
+  .p-card{
     margin-bottom: 2rem;
   }
 `;
