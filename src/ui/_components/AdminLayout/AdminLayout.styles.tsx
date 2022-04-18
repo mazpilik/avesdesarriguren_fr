@@ -3,7 +3,12 @@ import styled from 'styled-components/macro';
 export const BodyWrapper = styled.div`
   padding: 4rem;
 `;
-export const ContentWrapper = styled.div``;
+interface IContentWrapper {
+  isOpen: boolean;
+}
+export const ContentWrapper = styled.div<IContentWrapper>`
+ margin-left: ${({ isOpen }) => (isOpen ? '288px' : '96px')};
+ `;
 export const AdminLayoutWrapper = styled.div`
   display: flex;
   width: 100vw;

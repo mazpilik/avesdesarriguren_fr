@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, Dispatch, SetStateAction } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRecoilValue } from 'recoil';
 
@@ -12,10 +12,13 @@ import {
   Title, MenuWrapper, Menu, MenuItem, MenuLink, MenuEnd,
 } from './MainMenu.styles';
 
-export const MainMenu = () => {
-  const i18n = useRecoilValue(i18nAtom);
-  const [isOpen, setIsOpen] = React.useState(false);
+interface Props {
+  isOpen: boolean;
+  onSetIsOpen: Dispatch<SetStateAction<boolean>>;
+}
 
+export const MainMenu: FC<Props> = ({ isOpen, onSetIsOpen }) => {
+  const i18n = useRecoilValue(i18nAtom);
   return (
     <MenuWrapper isOpen={isOpen}>
       <Title>sh</Title>
@@ -46,7 +49,7 @@ export const MainMenu = () => {
         </MenuItem>
       </Menu>
       <MenuEnd>
-        <MenuItem onClick={() => setIsOpen(!isOpen)}>
+        <MenuItem onClick={() => onSetIsOpen(!isOpen)}>
           <FontAwesomeIcon icon={faCirclePlus} />
         </MenuItem>
       </MenuEnd>

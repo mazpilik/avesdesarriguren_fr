@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Header } from './_components/Header';
 import { Footer } from './_components/Footer';
@@ -13,13 +13,16 @@ interface AdminLayoutProps {
   sectionTitle: string;
 }
 
-export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, sectionTitle }) => (
-  <AdminLayoutWrapper>
-    <MainMenu />
-    <ContentWrapper>
-      <Header sectionTitle={sectionTitle} />
-      <BodyWrapper>{children}</BodyWrapper>
-      <Footer />
-    </ContentWrapper>
-  </AdminLayoutWrapper>
-);
+export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, sectionTitle }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <AdminLayoutWrapper>
+      <MainMenu isOpen={isOpen} onSetIsOpen={setIsOpen} />
+      <ContentWrapper isOpen={isOpen}>
+        <Header sectionTitle={sectionTitle} />
+        <BodyWrapper>{children}</BodyWrapper>
+        <Footer />
+      </ContentWrapper>
+    </AdminLayoutWrapper>
+  );
+};

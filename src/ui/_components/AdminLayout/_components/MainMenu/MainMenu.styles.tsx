@@ -33,15 +33,18 @@ export const MenuEnd = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
+  height: 15%;
 `;
 interface MenuWrapperProps {
   isOpen: boolean;
 }
 export const MenuWrapper = styled.div<MenuWrapperProps>`
+  position: fixed;
   display: flex;
   flex-direction: column;
   flex: auto 1;
   width: ${({ isOpen }) => (isOpen ? '288px' : '96px')};
+  height: 100vh;
   background-color: ${({ theme }) => theme.admin.mainMenuBack};
   color: ${({ theme }) => theme.admin.mainMenuText};
   ${Menu} {
