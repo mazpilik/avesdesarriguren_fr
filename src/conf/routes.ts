@@ -1,7 +1,17 @@
 export const routes = {
   ACCESS_POINT: '/',
+  ADD_BIRD: '/shkud/birds/add',
+  ADD_FAMILY: '/shkud/family/add',
+  ADD_ORDER: 'shkud/order/add',
+  ADD_NEWS: '/shkud/news/add',
+  ADD_USER: '/shkud/user/add',
   ADMIN_ACCESS_POINT: '/shkud',
   ADMIN_DASHBOARD: '/shkud',
   HOME: '/home',
+  LIST_BIRDS: '/shkud/birds',
+  LIST_FAMILIES: '/shkud/family',
+  LIST_ORDER: 'shkud/order/list',
+  LIST_NEWS: '/shkud/news',
+  LIST_USERS: '/shkud/users',
   LOGIN: '/login',
 };
