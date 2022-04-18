@@ -11,5 +11,20 @@
   "delete": "Eliminar",
   "save": "Guardar",
   "cancel": "Cancelar",
-  "view": "Ver"
+  "view": "Ver",
+  "dashboardBirdsTitle": "Aves",
+  "dashboardBirdsSubTitle": "Create/Read/Update/Delete",
+  "dashboardBirdsContent": "<p>Busca, crea y actualiza el catálago de aves</p>",
+  "dashboardNewsTitle": "Noticias",
+  "dashboardNewsSubTitle": "Create/Read/Update/Delete",
+  "dashboardNewsContent": "<p>Busca, crea y actualiza las noticias</p>",
+  "dashboardUserTitle": "Usuarios",
+  "dashboardUserSubTitle": "Create/Read/Update/Delete",
+  "dashboardUserContent": "<p>Busca, crea y actualiza usuarios</p>",
+  "dashboardFamilyTitle": "Familias",
+  "dashboardFamilySubTitle": "Create/Read/Update/Delete",
+  "dashboardFamilyContent": "<p>Busca, crea y actualiza las familias de aves</p>",
+  "dashboardGenderTitle": "Generos",
+  "dashboardGenderSubTitle": "Create/Read/Update/Delete",
+  "dashboardGenderContent": "<p>Busca, crea y actualiza los géneros de aves</p>"
 }

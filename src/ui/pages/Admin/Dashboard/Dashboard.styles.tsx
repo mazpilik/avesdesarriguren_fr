@@ -8,7 +8,7 @@ export const MainContent = styled.div`
 `;
 export const SecondaryContent = styled.div`
   width: 35%;
-  .adminCard{
+  .p-card{
     margin-bottom: 2rem;
   }
 `;

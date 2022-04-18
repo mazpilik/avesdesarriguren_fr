@@ -1,20 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import capitalize from 'lodash/capitalize';
 
 import { AddBtn, EditBtn } from 'src/ui/_components/Buttons';
 
 import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
 
-export const useNewsCard = () => {
+export const useDashboardCard = (section: string) => {
   const i18n = useRecoilValue(i18nAtom);
   const navigate = useNavigate();
 
   const onAddBtnClick = () => {
-    navigate('/shkud/news/add');
+    const route = `/shkud/${section}/add`;
+    navigate(route);
   };
   const onViewBtnClick = () => {
-    navigate('/shkud/news/list');
+    const route = `/shkud/${section}/list`;
+    navigate(route);
   };
 
   const footer = (
@@ -23,19 +26,9 @@ export const useNewsCard = () => {
       <EditBtn onClick={onViewBtnClick}>{i18n.view}</EditBtn>
     </>
   );
-  const title = 'News';
-  const subTitle = 'Create/Read/Update/Delete';
-  const content = (
-    <>
-      <p>
-        In this section you can manage the birds that are in the app.
-        To begin you only need to create add one bird to the system.
-      </p>
-      <p>
-        If you have allready create some, you can see the list of then an manage as you want.
-      </p>
-    </>
-  );
+  const title = i18n[`dashboard${capitalize(section)}Title`];
+  const subTitle = i18n[`dashboard${capitalize(section)}SubTitle`];
+  const content = i18n[`dashboard${capitalize(section)}Content`];
   return {
     onAddBtnClick,
     onViewBtnClick,
