@@ -14,7 +14,7 @@ export const Dashboard = () => {
   const newsCard = useDashboardCard('news');
   const usersCard = useDashboardCard('user');
   const familyCard = useDashboardCard('family');
-  const genderCard = useDashboardCard('gender');
+  const orderCard = useDashboardCard('order');
 
   return (
     <AdminLayout sectionTitle="Dashboard">
@@ -34,8 +34,8 @@ export const Dashboard = () => {
           <AdminCard className="newsCard" title={familyCard.title} subTitle={familyCard.subTitle} footer={familyCard.footer}>
             <div className="dashboard_card_content" dangerouslySetInnerHTML={{ __html: familyCard.content }} />
           </AdminCard>
-          <AdminCard className="newsCard" title={genderCard.title} subTitle={genderCard.subTitle} footer={genderCard.footer}>
-            <div className="dashboard_card_content" dangerouslySetInnerHTML={{ __html: genderCard.content }} />
+          <AdminCard className="newsCard" title={orderCard.title} subTitle={orderCard.subTitle} footer={orderCard.footer}>
+            <div className="dashboard_card_content" dangerouslySetInnerHTML={{ __html: orderCard.content }} />
           </AdminCard>
         </SecondaryContent>
       </DashboardWrapper>
