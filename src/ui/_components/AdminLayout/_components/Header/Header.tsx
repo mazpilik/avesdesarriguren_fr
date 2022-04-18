@@ -42,7 +42,7 @@ export const Header: FC<HeaderProps> = ({ sectionTitle }) => {
       </TitleWrapper>
       <UserWrapper>
         <UserCard>
-          <Avatar className="mr-2" size="large" shape="circle" image={`images/users/${user.name}.jpg`} />
+          <Avatar className="mr-2" size="large" shape="circle" image={`${process.env.REACT_APP_PUBLIC_URL}/images/users/${user.name}.jpg`} />
           <UserNameWrapper>
             {user.name}
           </UserNameWrapper>
