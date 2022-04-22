@@ -17,3 +17,8 @@ export const i18nAtom = atom({
   key: 'i18nAtom',
   default: {} as any,
 });
+
+export const toastAtom = atom({
+  key: 'toastAtom',
+  default: [] as any,
+});
