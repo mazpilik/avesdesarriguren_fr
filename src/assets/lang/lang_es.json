@@ -33,5 +33,19 @@
   "addNewsTitle": "Añadir noticia",
   "addUserTitle": "Añadir usuario",
   "saveBtn": "Guardar",
-  "orderLabel": "Orden"
+  "orderLabel": "Orden",
+  "success": "Éxito",
+  "error": "Error",
+  "createSuccess": "Registro creado con éxito",
+  "createDuplicatedError": "El registro ya existe",
+  "createError": "No es posible crear el registro",
+  "listOrdersTitle": "Ordenes",
+  "sortBy": "Ordenar por",
+  "sortAlphabetically": "Alfabéticamente",
+  "sortByDate": "Fecha",
+  "ascending": "asc",
+  "descending": "desc",
+  "sortOrder": "Orden",
+  "all": "Todos",
+  "of": "de"
 }
