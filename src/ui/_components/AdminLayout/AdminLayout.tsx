@@ -7,6 +7,7 @@ import { MainMenu } from './_components/MainMenu';
 import {
   AdminLayoutWrapper, BodyWrapper, ContentWrapper,
 } from './AdminLayout.styles';
+import { ToastNotifications } from './_components/ToastNotifications';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({ children, sectionTitle
         <BodyWrapper>{children}</BodyWrapper>
         <Footer />
       </ContentWrapper>
+      <ToastNotifications />
     </AdminLayoutWrapper>
   );
 };
