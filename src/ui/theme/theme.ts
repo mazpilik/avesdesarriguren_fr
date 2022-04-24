@@ -15,6 +15,10 @@ export const lightTheme: DefaultTheme = {
       default: '#CDDAFD',
       hover: '#CDDAFD',
     },
+    CancelBtnColor: {
+      default: '#ebebeb',
+      hover: '#ebebeb',
+    },
     ElementsBorder: '#ccc',
     ElementsBackground: '#FFFFFF',
     mainMenuBack: '#14213D',

@@ -37,3 +37,9 @@ export const DeleteBtn = styled(AdminBtn)`
       background-color: ${({ theme }) => theme.admin.DeleteBtnColor.default};
     }
 `;
+export const CancelBtn = styled(AdminBtn)`
+   background-color: ${({ theme }) => theme.admin.CancelBtnColor.default};
+    &:hover{
+      background-color: ${({ theme }) => theme.admin.CancelBtnColor.default};
+      }
+`;
