@@ -41,27 +41,15 @@ export const AddOrder = () => {
       if (response.status === 200) {
         const message = await response.json();
         if (message === 'CREATE_SUCCESS') {
-          notificationUtils.addNotification({
-            severity: 'success',
-            summary: i18n.success,
-            detail: i18n.createSuccess,
-          });
+          notificationUtils.addSuccessNotification(i18n.createSuccess);
         }
 
         if (message === 'CREATE_ERROR_DUPLICATED') {
-          notificationUtils.addNotification({
-            severity: 'error',
-            summary: i18n.error,
-            detail: i18n.createDuplicatedError,
-          });
+          notificationUtils.addErrorNotification(i18n.createDuplicatedError);
         }
       }
     } catch (error) {
-      notificationUtils.addNotification({
-        severity: 'error',
-        summary: i18n.error,
-        detail: i18n.createError,
-      });
+      notificationUtils.addErrorNotification(i18n.createError);
     }
   };
 
