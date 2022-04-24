@@ -7,6 +7,7 @@ export const routes = {
   ADD_USER: '/shkud/user/add',
   ADMIN_ACCESS_POINT: '/shkud',
   ADMIN_DASHBOARD: '/shkud',
+  EDIT_ORDER: '/shkud/order/edit/:orderId',
   HOME: '/home',
   LIST_BIRDS: '/shkud/birds',
   LIST_FAMILIES: '/shkud/family',
