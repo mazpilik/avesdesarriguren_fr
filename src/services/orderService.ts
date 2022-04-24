@@ -65,12 +65,12 @@ export const orderService = {
     });
     return response;
   },
-  updateOrder: async (order: IOrder) => {
+  updateOrder: async (order: IOrder, token:string) => {
     const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/${order.id}`, {
-      method: 'PUT',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${token}}`,
       },
       body: JSON.stringify(order),
     });
@@ -90,6 +90,20 @@ export const orderService = {
     if (response.status === 200) {
       const orderNumber = await response.json();
       return orderNumber;
+    }
+    return [];
+  },
+  deleteRecord: async (id: number, token:string) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status === 200) {
+      const deletedOrder = await response.json();
+      return deletedOrder;
     }
     return [];
   },

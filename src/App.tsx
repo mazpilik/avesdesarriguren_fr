@@ -16,6 +16,7 @@ import { AddNews } from './ui/pages/Admin/News/AddNews';
 import { AddOrder } from './ui/pages/Admin/Order/AddOrder';
 import { AddUser } from './ui/pages/Admin/User/AddUser';
 import { Dashboard } from './ui/pages/Admin/Dashboard';
+import { EditOrder } from './ui/pages/Admin/Order/EditOrder';
 import { Home } from './ui/pages/Home';
 import { LangProvider } from './ui/_components/LangProvider/LangProvider';
 import { ListOrders } from './ui/pages/Admin/Order/ListOrders';
@@ -38,6 +39,7 @@ const App: FC = () => (
             <Route path={routes.ADD_FAMILY} element={<PrivateRoute component={AddFamily} />} />
             <Route path={routes.ADD_ORDER} element={<PrivateRoute component={AddOrder} />} />
             <Route path={routes.LIST_ORDER} element={<PrivateRoute component={ListOrders} />} />
+            <Route path={routes.EDIT_ORDER} element={<PrivateRoute component={EditOrder} />} />
             <Route path={routes.ADD_NEWS} element={<PrivateRoute component={AddNews} />} />
             <Route path={routes.ADD_USER} element={<PrivateRoute component={AddUser} />} />
           </Routes>

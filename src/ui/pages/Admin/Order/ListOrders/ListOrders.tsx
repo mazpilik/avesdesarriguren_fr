@@ -1,22 +1,26 @@
-import React, { FC, useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import React, {
+  FC, useEffect, useReducer,
+} from 'react';
+import { useRecoilValue } from 'recoil';
 
 import { AdminLayout } from 'src/ui/_components/AdminLayout/AdminLayout';
 import { ListToolbar } from 'src/ui/_components/ListToolbar';
-
-import { IGetOrderById, orderService } from 'src/services/orderService';
-
-import { i18nAtom, toastAtom } from 'src/ui/_functions/atoms/atoms';
-
-import { List } from 'src/ui/_components/List/List';
+import { List } from 'src/ui/_components/List';
 import { Paginator } from 'src/ui/_components/Paginator';
 
-export const ListOrders: FC = () => {
-  const i18n = useRecoilValue(i18nAtom);
-  const setToast = useSetRecoilState(toastAtom);
+import { useNotificationHook } from 'src/ui/_functions/hooks/useNotificationHook';
 
-  const [isInit, setIsInit] = useState(false);
-  const [ordersState, setOrdersState] = useState({
+import { i18nAtom, userAtom } from 'src/ui/_functions/atoms/atoms';
+
+import { IGetOrderById, orderService } from 'src/services/orderService';
+import { ordersReducer, ordersActions } from './_functions/OrdersReducer';
+
+export const ListOrders: FC = () => {
+  const notifications = useNotificationHook();
+  const i18n = useRecoilValue(i18nAtom);
+  const user = useRecoilValue(userAtom);
+
+  const [ordersState, setOrdersState] = useReducer(ordersReducer, {
     error: null,
     itemsPerpage: 10,
     listType: 'grid',
@@ -24,13 +28,13 @@ export const ListOrders: FC = () => {
     orders: [],
     page: 1,
     sortBy: 'date',
-    sortDirection: 'asc',
+    sortDirection: 'desc',
     totalPages: 1,
     totalRecords: 0,
   });
 
   const getOrders = async () => {
-    setOrdersState({ ...ordersState, loading: true });
+    setOrdersState({ type: ordersActions.setLogin, payload: true });
     try {
       const opts: IGetOrderById = {
         page: ordersState.page,
@@ -39,83 +43,102 @@ export const ListOrders: FC = () => {
         sortDirection: ordersState.sortDirection,
       };
 
-      const data = await orderService.getOrdersBy(opts);
-      return data;
+      const orders = await orderService.getOrdersBy(opts);
+      setOrdersState({ type: ordersActions.setOrders, payload: orders });
     } catch (error) {
-      setToast({
-        severity: 'error',
-        summary: i18n.error,
-        detail: i18n.getOrdersError,
-      });
-      return [];
+      notifications.addErrorNotification(i18n.getOrdersError);
+    } finally {
+      setOrdersState({ type: ordersActions.setLogin, payload: false });
     }
   };
 
-  const initOrders = async () => {
-    // get total pages
-    const totalRecords = await orderService.getTotalRecords();
-    // set state
-    setOrdersState({
-      ...ordersState,
-      totalRecords,
-    });
-    setIsInit(true);
-  };
-
-  useEffect(() => {
-    const totalPages = Math.ceil(ordersState.totalRecords / ordersState.itemsPerpage);
-    setOrdersState({ ...ordersState, totalPages });
-  }, [ordersState.totalRecords]);
-
-  useEffect(() => {
-    initOrders();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      const orders = await getOrders();
+  const getPaginationValues = async () => {
+    try {
+      const totalRecords = await orderService.getTotalRecords();
+      const totalPages = Math.ceil(totalRecords / ordersState.itemsPerpage);
       setOrdersState({
-        ...ordersState,
-        orders,
-        loading: false,
+        type: ordersActions.setPaginationValues,
+        payload: { totalRecords, totalPages },
       });
-    })();
-  }, [
-    ordersState.page,
-    ordersState.sortBy,
-    ordersState.sortDirection,
-    ordersState.itemsPerpage,
-    isInit,
-  ]);
-
-  useEffect(() => {
-    if (isInit) {
-      const totalPages = Math.ceil(ordersState.totalRecords / ordersState.itemsPerpage);
-      setOrdersState({
-        ...ordersState,
-        totalPages,
-      });
+    } catch (error) {
+      notifications.addErrorNotification(i18n.getTotalRecordsError);
     }
-  }, [ordersState.orders]);
-
-  useEffect(() => {
-  }, [ordersState]);
+  };
 
   interface ISetListState {
     name: string;
     value: any;
   }
   const onSetListState = ({ name, value }: ISetListState) => {
-    setOrdersState({ ...ordersState, [name]: value });
+    switch (name) {
+      case 'itemsPerpage':
+        setOrdersState({ type: ordersActions.setItemsPerPage, payload: value });
+        break;
+      case 'listType':
+        setOrdersState({ type: ordersActions.setListType, payload: value });
+        break;
+      case 'sortBy':
+        setOrdersState({ type: ordersActions.setSortBy, payload: value });
+        break;
+      case 'sortDirection':
+        setOrdersState({ type: ordersActions.setSortDirection, payload: value });
+        break;
+      case 'page':
+        setOrdersState({ type: ordersActions.setPage, payload: value });
+        break;
+      default:
+        break;
+    }
   };
+
+  const deleteOrder = async (id: number) => {
+    try {
+      const response = await orderService.deleteRecord(id, user.token);
+
+      if (response === 'DELETE_SUCCESS') {
+        notifications.addSuccessNotification(i18n.deleteSuccess);
+        getOrders();
+      } else {
+        notifications.addErrorNotification(i18n.deleteError);
+      }
+    } catch (error) {
+      notifications.addErrorNotification(i18n.deleteError);
+    }
+  };
+
+  const onDelete = (id: number) => {
+    deleteOrder(id);
+  };
+
+  useEffect(() => {
+    getOrders();
+  }, [
+    ordersState.page,
+    ordersState.sortBy,
+    ordersState.sortDirection,
+    ordersState.itemsPerpage,
+  ]);
+
+  useEffect(() => {
+    getPaginationValues();
+  }, [ordersState.orders]);
 
   return (
     <AdminLayout sectionTitle={i18n.listOrdersTitle}>
-      <ListToolbar listState={ordersState} onSetListState={onSetListState} />
+      <ListToolbar
+        itemsPerpage={ordersState.itemsPerpage}
+        listType={ordersState.listType}
+        onSetListState={onSetListState}
+        sortBy={ordersState.sortBy}
+        sortDirection={ordersState.sortDirection}
+        totalRecords={ordersState.totalPages}
+      />
       <List
         isLoading={ordersState.loading}
         listItems={ordersState.orders}
         listType={ordersState.listType}
+        entity="order"
+        onDelete={onDelete}
       />
       {ordersState.totalPages > 1 && (
         <Paginator

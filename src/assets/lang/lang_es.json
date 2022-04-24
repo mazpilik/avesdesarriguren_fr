@@ -47,5 +47,8 @@
   "descending": "desc",
   "sortOrder": "Orden",
   "all": "Todos",
-  "of": "de"
+  "of": "de",
+  "updateBtn": "Actualizar",
+  "deleteSuccess": "Registro eliminado con éxito",
+  "deleteError": "No es posible eliminar el registro"
 }
