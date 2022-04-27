@@ -3,15 +3,26 @@ import { useRecoilValue } from 'recoil';
 
 import { faList, faBorderAll } from '@fortawesome/free-solid-svg-icons';
 
+import { InputText } from 'primereact/inputtext';
+
 import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
 
 import {
-  Filters, ItemsPerPage, ListType, OrderBy, Sorting, SortOrder, ToolbarWrapper,
+  AddItemBtn,
+  AddItemWrapper,
+  Filters,
+  ItemsPerPage,
+  ListType,
+  OrderBy,
+  Sorting,
+  SortOrder,
+  ToolbarWrapper,
 } from './ListToolbar.styles';
 
 interface Props {
   itemsPerpage: number;
   listType: string;
+  onGoToAddItem: () => void;
   onSetListState: any;
   sortBy: string;
   sortDirection: string;
@@ -20,6 +31,7 @@ interface Props {
 export const ListToolbar: FC<Props> = ({
   itemsPerpage,
   listType,
+  onGoToAddItem,
   onSetListState,
   sortBy,
   sortDirection,
@@ -67,7 +79,15 @@ export const ListToolbar: FC<Props> = ({
 
   return (
     <ToolbarWrapper>
-      <Filters />
+      <Filters>
+        <span className="p-input-icon-left">
+          <i className="pi pi-search" />
+          <InputText onChange={(e) => onSetListState({ name: 'searchTerm', value: e.target.value.trim() })} placeholder="Search" />
+        </span>
+      </Filters>
+      <AddItemWrapper>
+        <AddItemBtn onClick={onGoToAddItem}>+</AddItemBtn>
+      </AddItemWrapper>
       <Sorting>
         <OrderBy
           options={sortingOptions}

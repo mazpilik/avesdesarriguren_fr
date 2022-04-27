@@ -8,7 +8,6 @@ export const OrderBy = styled(Dropdown)`
   width: 200px;
 `;
 export const ItemsPerPage = styled(Dropdown)``;
-
 export const ListType = styled(FontAwesomeIcon)`
   font-size: 2rem;
   cursor: pointer;
@@ -20,7 +19,24 @@ export const Sorting = styled.div`
   gap:1rem;
   width: 40%;
 `;
-export const Filters = styled.div``;
+export const AddItemWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+`;
+export const AddItemBtn = styled.button`
+  cursor: pointer;
+  border-radius: 50px;
+  width: 3rem;
+  height: 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  border:none;
+`;
+export const Filters = styled.div`
+  width: 40%;
+`;
 export const ToolbarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
