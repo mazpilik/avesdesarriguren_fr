@@ -2,6 +2,7 @@ import React, {
   FC, useEffect, useReducer,
 } from 'react';
 import { useRecoilValue } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 import { AdminLayout } from 'src/ui/_components/AdminLayout/AdminLayout';
 import { ListToolbar } from 'src/ui/_components/ListToolbar';
@@ -19,6 +20,7 @@ export const ListOrders: FC = () => {
   const notifications = useNotificationHook();
   const i18n = useRecoilValue(i18nAtom);
   const user = useRecoilValue(userAtom);
+  const navigate = useNavigate();
 
   const [ordersState, setOrdersState] = useReducer(ordersReducer, {
     error: null,
@@ -31,6 +33,7 @@ export const ListOrders: FC = () => {
     sortDirection: 'desc',
     totalPages: 1,
     totalRecords: 0,
+    searchTerm: '',
   });
 
   const getOrders = async () => {
@@ -41,9 +44,12 @@ export const ListOrders: FC = () => {
         limit: ordersState.itemsPerpage,
         sortBy: ordersState.sortBy,
         sortDirection: ordersState.sortDirection,
+        where: ordersState.searchTerm,
       };
+      let orders: any = [];
 
-      const orders = await orderService.getOrdersBy(opts);
+      orders = await orderService.getOrdersBy(opts);
+
       setOrdersState({ type: ordersActions.setOrders, payload: orders });
     } catch (error) {
       notifications.addErrorNotification(i18n.getOrdersError);
@@ -54,7 +60,7 @@ export const ListOrders: FC = () => {
 
   const getPaginationValues = async () => {
     try {
-      const totalRecords = await orderService.getTotalRecords();
+      const totalRecords = await orderService.getTotalRecords(ordersState.searchTerm);
       const totalPages = Math.ceil(totalRecords / ordersState.itemsPerpage);
       setOrdersState({
         type: ordersActions.setPaginationValues,
@@ -86,6 +92,9 @@ export const ListOrders: FC = () => {
       case 'page':
         setOrdersState({ type: ordersActions.setPage, payload: value });
         break;
+      case 'searchTerm':
+        setOrdersState({ type: ordersActions.setSearchTerm, payload: value });
+        break;
       default:
         break;
     }
@@ -110,6 +119,10 @@ export const ListOrders: FC = () => {
     deleteOrder(id);
   };
 
+  const onGoToAddItem = () => {
+    navigate('/shkud/order/add');
+  };
+
   useEffect(() => {
     getOrders();
   }, [
@@ -117,6 +130,7 @@ export const ListOrders: FC = () => {
     ordersState.sortBy,
     ordersState.sortDirection,
     ordersState.itemsPerpage,
+    ordersState.searchTerm,
   ]);
 
   useEffect(() => {
@@ -128,6 +142,7 @@ export const ListOrders: FC = () => {
       <ListToolbar
         itemsPerpage={ordersState.itemsPerpage}
         listType={ordersState.listType}
+        onGoToAddItem={onGoToAddItem}
         onSetListState={onSetListState}
         sortBy={ordersState.sortBy}
         sortDirection={ordersState.sortDirection}

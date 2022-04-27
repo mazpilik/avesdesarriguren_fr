@@ -9,6 +9,7 @@ interface IOrderState {
   sortDirection: string,
   totalPages: number,
   totalRecords: number,
+  searchTerm: string,
 }
 
 interface IAction {
@@ -25,6 +26,7 @@ export const ordersActions = {
   setSortBy: 'SET_SORT_BY',
   setSortDirection: 'SET_SORT_DIRECTION',
   setPage: 'SET_PAGE',
+  setSearchTerm: 'SET_SEARCH_TERM',
 };
 
 export const ordersReducer = (state: IOrderState, action: IAction): IOrderState => {
@@ -69,6 +71,11 @@ export const ordersReducer = (state: IOrderState, action: IAction): IOrderState 
       return {
         ...state,
         sortDirection: action.payload,
+      };
+    case ordersActions.setSearchTerm:
+      return {
+        ...state,
+        searchTerm: action.payload,
       };
     default:
       return state;

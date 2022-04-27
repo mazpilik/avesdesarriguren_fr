@@ -5,6 +5,7 @@ export interface IGetOrderById {
   limit: number;
   sortBy: string;
   sortDirection: string;
+  where: string;
 }
 
 export const orderService = {
@@ -23,10 +24,10 @@ export const orderService = {
   },
   getOrdersBy: async (opts:IGetOrderById) => {
     const {
-      page, limit, sortBy, sortDirection,
+      page, limit, sortBy, sortDirection, where,
     } = opts;
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/orders/sorted/${page}/${limit}/${sortBy}/${sortDirection}`,
+      `${process.env.REACT_APP_API_URL}/orders/sorted/${page}/${limit}/${sortBy}/${sortDirection}${where !== '' ? `/${where}` : ''}`,
       {
         method: 'GET',
         headers: {
@@ -80,8 +81,8 @@ export const orderService = {
     }
     return [];
   },
-  getTotalRecords: async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/number`, {
+  getTotalRecords: async (where = '') => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/number${where !== '' ? `/${where}` : ''}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -90,6 +91,19 @@ export const orderService = {
     if (response.status === 200) {
       const orderNumber = await response.json();
       return orderNumber;
+    }
+    return [];
+  },
+  findOrdersByName: async (name: string) => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/find/${name}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 200) {
+      const orders = await response.json();
+      return orders;
     }
     return [];
   },
