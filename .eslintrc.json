@@ -45,7 +45,9 @@
                 "namedComponents": "arrow-function"
             }
         ],
-        "jsx-a11y/label-has-associated-control": "off"
+        "jsx-a11y/label-has-associated-control": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": "off"
     },
     "settings": {
         "import/resolver": {
