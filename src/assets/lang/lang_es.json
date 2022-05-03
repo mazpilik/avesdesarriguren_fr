@@ -50,5 +50,13 @@
   "of": "de",
   "updateBtn": "Actualizar",
   "deleteSuccess": "Registro eliminado con éxito",
-  "deleteError": "No es posible eliminar el registro"
+  "deleteError": "No es posible eliminar el registro",
+  "familyLabel": "Familia",
+  "ERROR_DUPLICATE_ENTRY": "El registro ya existe",
+  "ERROR_FAMILY_CREATION_FAIL": "No es posible crear la familia",
+  "SUCCESS_FAMILY_CREATION": "Familia creada con éxito",
+  "listFamiliesTitle": "Familias",
+  "UPDATE_SUCCESS": "Registro actualizado con éxito",
+  "UPDATE_ERROR": "No es posible actualizar el registro",
+  "updateFamilyTitle": "Actualizar familia"
 }
