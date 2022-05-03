@@ -10,7 +10,7 @@ export interface IGetOrderById {
 
 export const orderService = {
   getAllOrders: async () => {
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/orders/all`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
