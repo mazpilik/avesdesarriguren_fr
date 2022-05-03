@@ -30,13 +30,22 @@ export const List: FC<IListProps> = ({
     navigate(route);
   };
 
+  const getSubtitle = (item: any) => {
+    switch (entity) {
+      case 'family':
+        return item.orderName;
+      default:
+        return '';
+    }
+  };
+
   return (
     <ListWrapper listType={listType} isLoading={isLoading}>
       {isLoading ? (
         <div>Loading...</div>
       ) : (
         listItems.map((item: any) => (
-          <AdminCard className="listCard" title={item.name} key={uniqueId()}>
+          <AdminCard className="listCard" title={item.name} subTitle={getSubtitle(item)} key={uniqueId()}>
             <Actions>
               <EditBtn onClick={() => navigateToEdit(item.id)}>{i18n.edit}</EditBtn>
               <DeleteBtn onClick={() => onDelete(item.id)}>{i18n.delete}</DeleteBtn>

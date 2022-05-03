@@ -52,6 +52,10 @@ export const ListWrapper = styled.div<WrapperProps>`
       .p-card-title{
         font-size:2rem;
       }
+      .p-card-subtitle{
+        font-size:1.4rem;
+        font-style:italic;
+      }
     }
     ${Actions} {
       ${EditBtn}{
