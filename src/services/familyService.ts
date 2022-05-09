@@ -16,8 +16,8 @@ export const familyService = {
         'Content-Type': 'application/json',
       },
     });
+    const family = await response.json();
     if (response.status === 200) {
-      const family = await response.json();
       return family;
     }
     return [];
@@ -122,6 +122,24 @@ export const familyService = {
     if (response.status === 200) {
       const deletedFamily = await response.json();
       return deletedFamily;
+    }
+    return [];
+  },
+  getFamiliesbyOrder: async (orderId: number) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/family/order/${orderId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+        },
+      });
+      if (response.status === 200) {
+        const family = await response.json();
+        return family;
+      }
+    } catch (error) {
+      console.log(error);
     }
     return [];
   },
