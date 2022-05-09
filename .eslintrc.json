@@ -23,6 +23,8 @@
         "import/prefer-default-export": "off",
         "no-use-before-define": "off",
         "@typeScript-eslint/no-use-before-define": "off",
+        "no-used-vars": "off",
+        "@typescript-eslint/no-unused-vars": ["error"],
         "react/jsx-filename-extension": [
             "warn",
             {
