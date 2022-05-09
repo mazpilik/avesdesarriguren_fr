@@ -15,6 +15,9 @@ export const AddBtn = styled(AdminBtn)`
     &:hover{
       background-color: ${({ theme }) => theme.admin.AddBtnColor.default};
     }
+    &:disabled{
+      background-color: ${({ theme }) => theme.admin.AddBtnColor.disabled};
+    }
   
 `;
 export const SaveBtn = styled(AdminBtn)`
@@ -23,6 +26,10 @@ export const SaveBtn = styled(AdminBtn)`
     &:hover{
       background-color: ${({ theme }) => theme.admin.AddBtnColor.default};
     }
+    &:disabled{
+      background-color: ${({ theme }) => theme.admin.AddBtnColor.disabled};
+      opacity: 0.5;
+    }
   
 `;
 export const EditBtn = styled(AdminBtn)`
@@ -30,16 +37,28 @@ export const EditBtn = styled(AdminBtn)`
     &:hover{
       background-color: ${({ theme }) => theme.admin.EditBtnColor.default};
     }
+    &:disabled{
+      background-color: ${({ theme }) => theme.admin.EditBtnColor.disabled};
+      opacity: 0.5;
+    }
 `;
 export const DeleteBtn = styled(AdminBtn)`
    background-color: ${({ theme }) => theme.admin.DeleteBtnColor.default};
     &:hover{
       background-color: ${({ theme }) => theme.admin.DeleteBtnColor.default};
     }
+    &:disabled{
+      background-color: ${({ theme }) => theme.admin.DeleteBtnColor.disabled};
+      opacity: 0.5;
+    }
 `;
 export const CancelBtn = styled(AdminBtn)`
    background-color: ${({ theme }) => theme.admin.CancelBtnColor.default};
     &:hover{
       background-color: ${({ theme }) => theme.admin.CancelBtnColor.default};
-      }
+    }
+    &:disabled{
+      background-color: ${({ theme }) => theme.admin.CancelBtnColor.disabled};
+      opacity: 0.5;
+    }
 `;
