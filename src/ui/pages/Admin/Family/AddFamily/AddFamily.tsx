@@ -55,6 +55,8 @@ export const AddFamily = () => {
         <FieldWrapper className="sh-field-wrapper p-float-label">
           <Dropdown
             id="ordername"
+            filter
+            filterBy="label"
             options={ordersOptions}
             autoFocus
             onChange={(e) => setFamilyState({
