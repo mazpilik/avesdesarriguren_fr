@@ -70,7 +70,7 @@
   "langLabel": "Idioma",
   "birdLength": "Longitud",
   "name": "Nombre",
-  "wingSpan": "Envergadura",
+  "wingspan": "Envergadura",
   "identification": "Identificación",
   "singing": "Canto",
   "moving": "Desplazamientos",
@@ -108,5 +108,8 @@
   "prevStep": "Anterior",
   "successBirdCreated": "Ave creada con éxito",
   "errorBirdNotCreated": "No es posible crear la ave",
-  "errorSavingData": "No es posible guardar los datos"
+  "errorSavingData": "No es posible guardar los datos",
+  "imageUploadSuccess": "Imagenes subidas con éxito",
+  "imageUploadError": "No es posible subir las imágenes",
+  "errorDuplicatedImage": "La imagen ya existe"
 }
