@@ -8,7 +8,7 @@ export type AditionalInfo = {
   name: string;
   summary: string;
   birdLength: string;
-  wingSpan: string;
+  wingspan: string;
   identification: string;
   singing: string;
   moving: string;
@@ -30,6 +30,14 @@ export type Bird = {
   months: number [];
 }
 
+export type BirdForSave = {
+  name: string;
+  family_id: number;
+  additionalData: AditionalInfo[];
+  frecuency: string [];
+  months: number [];
+}
+
 export const mockBird: Bird = {
   birdId: 1,
   name: 'testerius testis',
@@ -41,7 +49,7 @@ export const mockBird: Bird = {
       name: 'testerius testis',
       summary: 'testerius testis',
       birdLength: 'testerius testis',
-      wingSpan: 'testerius testis',
+      wingspan: 'testerius testis',
       identification: 'testerius testis',
       singing: 'testerius testis',
       moving: 'testerius testis',
@@ -58,7 +66,7 @@ export const mockBird: Bird = {
       name: 'testerius testis',
       summary: 'testerius testis',
       birdLength: 'testerius testis',
-      wingSpan: 'testerius testis',
+      wingspan: 'testerius testis',
       identification: 'testerius testis',
       singing: 'testerius testis',
       moving: 'testerius testis',

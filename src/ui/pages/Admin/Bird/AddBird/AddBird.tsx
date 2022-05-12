@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 
 import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
 
-import { Bird } from 'src/domain/Bird';
+import { BirdForSave } from 'src/domain/Bird';
 import { birdService } from 'src/services/birdService';
 
 import { useNotificationHook } from 'src/ui/_functions/hooks/useNotificationHook';
@@ -14,13 +14,13 @@ import { BirdCreationSteps, SectionCard } from './AddBird.styles';
 import { BirdPhotos } from './_components/BirdPhotos';
 import BirdData from './_components/BirdData';
 
-import { addBirdReducer, addBirdsActions, mockBird } from './_functions/addBirdReducer';
+import { addBirdReducer, addBirdsActions, defaultBirdState } from './_functions/addBirdReducer';
 import { prepareDataForSaving } from './_functions/prepareDataForSaving';
 
 export const AddBird = () => {
   const i18n = useRecoilValue(i18nAtom);
   const notifications = useNotificationHook();
-  const [birdState, setBirdState] = useReducer(addBirdReducer, mockBird);
+  const [birdState, setBirdState] = useReducer(addBirdReducer, defaultBirdState);
 
   const stepsModel = [
     { label: i18n.basicInfo, icon: 'pi pi-fw pi-user' },
@@ -30,17 +30,14 @@ export const AddBird = () => {
 
   const onSaveData = async () => {
     try {
-      const data: Bird = prepareDataForSaving(birdState);
+      const data: BirdForSave = prepareDataForSaving(birdState);
       const response = await birdService.createBird(data);
-      if (response.status === 200) {
-        setBirdState({
-          type: addBirdsActions.setId,
-          payload: response,
-        });
-        notifications.addSuccessNotification(i18n.successBirdCreated);
-      } else {
-        notifications.addErrorNotification(i18n.errorBirdNotCreated);
-      }
+
+      setBirdState({
+        type: addBirdsActions.setId,
+        payload: response,
+      });
+      notifications.addSuccessNotification(i18n.successBirdCreated);
     } catch (error) {
       notifications.addErrorNotification(i18n.errorSavingData);
     }
@@ -74,7 +71,7 @@ export const AddBird = () => {
               onSetData={setBirdState}
             />
           )}
-        {birdState.step === 2 && <BirdPhotos />}
+        {birdState.step === 2 && <BirdPhotos birdId={birdState.birdId} onSetData={setBirdState} />}
       </SectionCard>
     </AdminLayout>
   );

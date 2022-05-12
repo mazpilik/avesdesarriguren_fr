@@ -96,8 +96,8 @@ export const BirdData: React.FC<Props> = ({ aditionalInfos, onSetData, onSaveDat
         <label>{i18n.birdLength}</label>
       </FieldWrapper>
       <FieldWrapper className="sh-field-wrapper p-float-label">
-        <InputText id="wingSpan" onChange={(e) => onChangeData('wingSpan', e.target.value)} value={currentInfo.wingSpan} />
-        <label>{i18n.wingSpan}</label>
+        <InputText id="wingspan" onChange={(e) => onChangeData('wingspan', e.target.value)} value={currentInfo.wingspan} />
+        <label>{i18n.wingspan}</label>
       </FieldWrapper>
       <FieldWrapper className="sh-field-wrapper p-float-label">
         <InputTextarea id="identification" onChange={(e) => onChangeData('identification', e.target.value)} value={currentInfo.identification} />

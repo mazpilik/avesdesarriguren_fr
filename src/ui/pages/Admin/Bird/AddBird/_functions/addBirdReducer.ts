@@ -8,7 +8,7 @@ export type AditionalInfo = {
   name: string;
   summary: string;
   birdLength: string;
-  wingSpan: string;
+  wingspan: string;
   identification: string;
   singing: string;
   moving: string;
@@ -37,6 +37,7 @@ export enum addBirdsActions {
   setFrecuency = 'SET_FRECUENCY',
   setMonths = 'SET_MONTHS',
   setId = 'SET_ID',
+  resetState = 'RESET_STATE',
 }
 export type BirdAction = {
   type: addBirdsActions;
@@ -56,7 +57,7 @@ export const defaultBirdState: BirdState = {
       name: '',
       summary: '',
       birdLength: '',
-      wingSpan: '',
+      wingspan: '',
       identification: '',
       singing: '',
       moving: '',
@@ -73,7 +74,7 @@ export const defaultBirdState: BirdState = {
       name: '',
       summary: '',
       birdLength: '',
-      wingSpan: '',
+      wingspan: '',
       identification: '',
       singing: '',
       moving: '',
@@ -92,7 +93,7 @@ export const defaultBirdState: BirdState = {
 
 export const mockBird: BirdState = {
   step: 1,
-  birdId: 1,
+  birdId: 30,
   basicInfo: {
     name: 'testerius testis',
     familyId: 33,
@@ -104,7 +105,7 @@ export const mockBird: BirdState = {
       name: 'testerius testis',
       summary: 'testerius testis',
       birdLength: 'testerius testis',
-      wingSpan: 'testerius testis',
+      wingspan: 'testerius testis',
       identification: 'testerius testis',
       singing: 'testerius testis',
       moving: 'testerius testis',
@@ -121,7 +122,7 @@ export const mockBird: BirdState = {
       name: 'testerius testis',
       summary: 'testerius testis',
       birdLength: 'testerius testis',
-      wingSpan: 'testerius testis',
+      wingspan: 'testerius testis',
       identification: 'testerius testis',
       singing: 'testerius testis',
       moving: 'testerius testis',
@@ -178,6 +179,8 @@ export const addBirdReducer = (state: BirdState, { type, payload }: BirdAction):
         ...state,
         birdId: payload,
       };
+    case addBirdsActions.resetState:
+      return defaultBirdState;
     default:
       return state;
   }

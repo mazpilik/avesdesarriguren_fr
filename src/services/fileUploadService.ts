@@ -1,32 +1,33 @@
-import axios from 'axios';
+// import axios from 'axios';
 
 export const fileUploadService = {
-  upload: async (files:any) => {
-    console.log('files in service', files);
+  birdUpload: async (files:any, birdId:number) => {
     const formData = new FormData();
     formData.append('files', files);
-    axios.post(`${process.env.REACT_APP_API_URL}/fileupload`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-      },
-    }).then((response) => {
-      console.log('success', response);
-    }).catch((error) => {
-      console.log('error', error);
-    });
-    // const response = await fetch(`${process.env.REACT_APP_API_URL}/fileupload`, {
-    //   method: 'POST',
-    //   headers: {
-    //     Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-    //   },
-    //   body: formData,
-    // });
-    // console.log('response', response);
-    // if (response.status === 200) {
-    //   return 'file uploaded';
-    // }
-    // const answer = await response.json();
-    // return answer;
+    // get sessionStorage object
+    const user = sessionStorage.getItem('user') || '';
+    const { token } = JSON.parse(user);
+
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/fileupload/bird/${birdId}`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
+        },
+      );
+      if (response.status === 200) {
+        const message = await response.json();
+        return message;
+      }
+      const message = await response.json();
+      return message;
+    } catch (error) {
+      // throw error;
+      return error;
+    }
   },
 };
