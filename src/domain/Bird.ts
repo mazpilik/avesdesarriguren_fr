@@ -37,6 +37,14 @@ export type BirdForSave = {
   frecuency: string [];
   months: number [];
 }
+export type BirdForUpdate = {
+  id?: number;
+  name: string;
+  family_id: number;
+  additionalData: AditionalInfo[];
+  frecuency: string [];
+  months: number [];
+}
 
 export const mockBird: Bird = {
   birdId: 1,

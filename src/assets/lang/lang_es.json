@@ -111,5 +111,10 @@
   "errorSavingData": "No es posible guardar los datos",
   "imageUploadSuccess": "Imagenes subidas con éxito",
   "imageUploadError": "No es posible subir las imágenes",
-  "errorDuplicatedImage": "La imagen ya existe"
+  "errorDuplicatedImage": "La imagen ya existe",
+  "birdsListingTitle": "Aves",
+  "noListItems": "No hay resultados",
+  "editBirdSectionTitle": "Editar ave",
+  "basicInfoTitle": "Información básica",
+  "birdDataTitle": "Datos del ave"
 }

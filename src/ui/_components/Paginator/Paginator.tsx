@@ -12,6 +12,9 @@ interface Props {
 }
 export const Paginator: FC<Props> = ({ page, totalPages, onSetListState }) => {
   const i18n = useRecoilValue(i18nAtom);
+  if (totalPages <= 1) {
+    return null;
+  }
   return (
     <MainWrapper>
       <PageNumber value={page} onChange={(e) => onSetListState({ name: 'page', value: e.target.value })} />
