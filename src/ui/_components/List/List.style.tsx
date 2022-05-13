@@ -5,10 +5,17 @@ interface WrapperProps {
   listType: string;
   isLoading: boolean;
 }
+export const ListItemImage = styled.img`
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+`;
 export const Actions = styled.div``;
 export const ListWrapper = styled.div<WrapperProps>`
   display: flex;
   margin-bottom: 2rem;
+  flex: 1 auto;
   ${({ listType, isLoading }) => {
     if (isLoading) {
       return css`

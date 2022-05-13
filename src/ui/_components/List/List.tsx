@@ -8,7 +8,7 @@ import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
 import { DeleteBtn, EditBtn } from 'src/ui/_components/Buttons';
 import { AdminCard } from '../AdminCard';
 
-import { Actions, ListWrapper } from './List.style';
+import { Actions, ListWrapper, ListItemImage } from './List.style';
 
 interface IListProps {
   listItems: any[];
@@ -34,10 +34,30 @@ export const List: FC<IListProps> = ({
     switch (entity) {
       case 'family':
         return item.orderName;
+      case 'bird':
+        return `${item.orderName} / ${item.familyName}`;
       default:
         return '';
     }
   };
+
+  const getImage = (item: any) => {
+    switch (entity) {
+      case 'bird':
+
+        return (<ListItemImage src={`${process.env.REACT_APP_API_URL}/images/birds/${item.images[0].img}`} alt="bird" />);
+      default:
+        return '';
+    }
+  };
+
+  if (listItems.length === 0 && !isLoading) {
+    return (
+      <ListWrapper listType={listType} isLoading={isLoading}>
+        <p>{i18n.noListItems}</p>
+      </ListWrapper>
+    );
+  }
 
   return (
     <ListWrapper listType={listType} isLoading={isLoading}>
@@ -46,6 +66,7 @@ export const List: FC<IListProps> = ({
       ) : (
         listItems.map((item: any) => (
           <AdminCard className="listCard" title={item.name} subTitle={getSubtitle(item)} key={uniqueId()}>
+            {getImage(item)}
             <Actions>
               <EditBtn onClick={() => navigateToEdit(item.id)}>{i18n.edit}</EditBtn>
               <DeleteBtn onClick={() => onDelete(item.id)}>{i18n.delete}</DeleteBtn>
