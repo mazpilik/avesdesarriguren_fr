@@ -69,6 +69,7 @@ export const Login = () => {
           id: decodedToken.uid,
           name,
           token: response.token,
+          lang: 'es',
         });
       } catch (error) {
         console.error(error);
