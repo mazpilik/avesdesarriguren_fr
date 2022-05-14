@@ -20,13 +20,17 @@ export type AditionalInfo = {
   worldDistribution: string;
   peninsulaDistribution: string;
 }
+export type BirdImage = {
+  img: string;
+  checked: boolean;
+}
 export type BirdState = {
-  birdId?: number;
+  birdId: number;
   basicInfo: BasicInfoType;
   aditionalInfos: AditionalInfo[];
   frecuency: string [];
   months: number [];
-  images: string [];
+  images: BirdImage [];
 }
 export enum updateBirdsActions {
   setBasicInfo = 'SET_BASIC_INFO',
@@ -37,6 +41,7 @@ export enum updateBirdsActions {
   setId = 'SET_ID',
   resetState = 'RESET_STATE',
   setAllState = 'SET_ALL_STATE',
+  removeImage = 'REMOVE_IMAGE',
 }
 export type BirdAction = {
   type: updateBirdsActions;
@@ -44,6 +49,7 @@ export type BirdAction = {
 }
 
 export const defaultBirdState: BirdState = {
+  birdId: 0,
   basicInfo: {
     name: '',
     familyId: 0,
@@ -124,6 +130,11 @@ export const updateBirdReducer = (state: BirdState, { type, payload }: BirdActio
       return defaultBirdState;
     case updateBirdsActions.setAllState:
       return payload;
+    case updateBirdsActions.removeImage:
+      return {
+        ...state,
+        images: payload,
+      };
     default:
       return state;
   }

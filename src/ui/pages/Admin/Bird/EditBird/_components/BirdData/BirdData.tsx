@@ -1,35 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { useNavigate } from 'react-router-dom';
 
-import { ActionButtons, FieldWrapper } from 'src/ui/_components/Form';
+import { FieldWrapper } from 'src/ui/_components/Form';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText } from 'primereact/inputtext';
 import { InputTextarea } from 'primereact/inputtextarea';
-import { CancelBtn, SaveBtn } from 'src/ui/_components/Buttons/CustomButtons';
 
 import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
 import { updateBirdsActions, AditionalInfo, BirdAction } from '../../_functions/updateBirdReducer';
-import { validateBirData } from './_functions/validateBirData';
 
 type Props = {
   aditionalInfos: AditionalInfo[];
   onSetData: React.Dispatch<BirdAction>;
-  onSaveData: () => void;
 }
-export const BirdData: React.FC<Props> = ({ aditionalInfos, onSetData, onSaveData }) => {
+export const BirdData: React.FC<Props> = ({ aditionalInfos, onSetData }) => {
   // get i18n context
   const i18n = useRecoilValue(i18nAtom);
-
-  // navigate
-  const navigate = useNavigate();
 
   // lang state
   const [lang, setLang] = useState('es');
   // current aditional info
   const [currentInfo, setCurrentInfo] = useState({} as AditionalInfo);
-  // save button disabled state
-  const [isSaveDisabled, setIsSaveDisabled] = useState(true);
 
   // lang options
   const langOptions = [
@@ -58,15 +49,6 @@ export const BirdData: React.FC<Props> = ({ aditionalInfos, onSetData, onSaveDat
       setCurrentInfo(cInfo);
     }
   }, [lang, aditionalInfos]);
-
-  // check if save button is disabled
-  useEffect(() => {
-    if (validateBirData(aditionalInfos).length === 0) {
-      setIsSaveDisabled(false);
-    } else {
-      setIsSaveDisabled(true);
-    }
-  }, [currentInfo]);
 
   return (
     <>
@@ -136,10 +118,6 @@ export const BirdData: React.FC<Props> = ({ aditionalInfos, onSetData, onSaveDat
         <InputTextarea id="peninsulaDistribution" onChange={(e) => onChangeData('peninsulaDistribution', e.target.value)} value={currentInfo.peninsulaDistribution} />
         <label>{i18n.peninsulaDistribution}</label>
       </FieldWrapper>
-      <ActionButtons>
-        <SaveBtn disabled={isSaveDisabled} onClick={onSaveData}>{i18n.save}</SaveBtn>
-        <CancelBtn onClick={() => navigate(-1)}>{i18n.cancel}</CancelBtn>
-      </ActionButtons>
     </>
   );
 };

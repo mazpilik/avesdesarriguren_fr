@@ -116,5 +116,8 @@
   "noListItems": "No hay resultados",
   "editBirdSectionTitle": "Editar ave",
   "basicInfoTitle": "Información básica",
-  "birdDataTitle": "Datos del ave"
+  "birdDataTitle": "Datos del ave",
+  "birdImgUpdatingTitle": "Actualizar fotos de ave",
+  "addImagesTitle": "Añadir fotos",
+  "reloadDataBtn": "Recargar datos"
 }

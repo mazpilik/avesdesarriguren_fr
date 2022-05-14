@@ -1,4 +1,6 @@
-import { AditionalInfo, BasicInfoType, BirdState } from 'src/ui/pages/Admin/Bird/EditBird/_functions/updateBirdReducer';
+import {
+  AditionalInfo, BasicInfoType, BirdState, BirdImage,
+} from 'src/ui/pages/Admin/Bird/EditBird/_functions/updateBirdReducer';
 
 export const parseBirdToEditSTate = (bird: any): BirdState => {
   const {
@@ -51,7 +53,10 @@ export const parseBirdToEditSTate = (bird: any): BirdState => {
       peninsulaDistribution,
     }),
   );
-  const images: string[] = rawImages.map((image: any) => image.name);
+  const images: BirdImage[] = rawImages.map((image: any) => ({
+    img: image.img,
+    checked: true,
+  }));
   console.log('adicionalInfosParsed', aditionalInfosParsed);
   const birdState: BirdState = {
     birdId: id,

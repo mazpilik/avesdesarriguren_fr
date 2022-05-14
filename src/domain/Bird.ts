@@ -40,10 +40,11 @@ export type BirdForSave = {
 export type BirdForUpdate = {
   id?: number;
   name: string;
-  family_id: number;
-  additionalData: AditionalInfo[];
+  familyId: number;
+  birdData: AditionalInfo[];
   frecuency: string [];
   months: number [];
+  images: string[];
 }
 
 export const mockBird: Bird = {
