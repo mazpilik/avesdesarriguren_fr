@@ -119,5 +119,10 @@
   "birdDataTitle": "Datos del ave",
   "birdImgUpdatingTitle": "Actualizar fotos de ave",
   "addImagesTitle": "Añadir fotos",
-  "reloadDataBtn": "Recargar datos"
+  "reloadDataBtn": "Recargar datos",
+  "newsDataStep": "Datos de noticias",
+  "newsPhotosStep": "Fotos de noticias",
+  "title": "Título",
+  "subtitle": "Subtítulo",
+  "content": "Contenido"
 }
