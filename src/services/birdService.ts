@@ -94,4 +94,17 @@ export const birdService = {
     }
     return {};
   },
+  findAllBirds: async () => {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/birds/all`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.status === 200) {
+      const birds = await response.json();
+      return birds;
+    }
+    return [];
+  },
 };

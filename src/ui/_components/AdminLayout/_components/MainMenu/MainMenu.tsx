@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRecoilValue } from 'recoil';
 
 import {
-  faHome, faUsers, faFeather, faNewspaper, faCirclePlus,
+  faHome, faFeather, faNewspaper, faCirclePlus, faCalendarCheck,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
@@ -42,9 +42,9 @@ export const MainMenu: FC<Props> = ({ isOpen, onSetIsOpen }) => {
           </MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="/shkud">
-            <FontAwesomeIcon icon={faUsers} />
-            {isOpen ? i18n.users : ''}
+          <MenuLink to="/shkud/monthBird/list">
+            <FontAwesomeIcon icon={faCalendarCheck} />
+            {isOpen ? i18n.monthBird : ''}
           </MenuLink>
         </MenuItem>
       </Menu>

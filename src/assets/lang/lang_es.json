@@ -27,6 +27,9 @@
   "dashboardOrderTitle": "Generos",
   "dashboardOrderSubTitle": "Create/Read/Update/Delete",
   "dashboardOrderContent": "<p>Busca, crea y actualiza los ordens de aves</p>",
+  "dashboardMonthbirdTitle": "Ave del mes",
+  "dashboardMonthbirdSubTitle": "Create/Read/Update/Delete",
+  "dashboardMonthbirdContent": "<p>Busca, crea y actualiza las aves del mes</p>",
   "addBirdTitle": "Añadir ave",
   "addFamilyTitle": "Añadir familia",
   "addOrderTitle": "Añadir orden",
@@ -129,5 +132,12 @@
   "newsCreated": "Noticia creada con éxito",
   "uploadNewsImagesTitle": "Subir imágenes",
   "listNewsSectionTitle": "Noticias",
-  "newsEditSectionTitle": "Editar noticia"
+  "newsEditSectionTitle": "Editar noticia",
+  "addMonthBirdSectionTitle": "Añadir ave del mes",
+  "monthLabel": "Mes",
+  "birdLabel": "Ave",
+  "contentLabelEs": "Contenido",
+  "contentLabelEus": "Testua",
+  "monthBird": "Ave del mes",
+  "monthBirdEditSectionTitle": "Editar ave del mes"
 }

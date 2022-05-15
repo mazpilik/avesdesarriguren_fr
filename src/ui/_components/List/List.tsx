@@ -39,6 +39,21 @@ export const List: FC<IListProps> = ({
     }
   };
 
+  const months: any = {
+    1: 'january',
+    2: 'february',
+    3: 'march',
+    4: 'april',
+    5: 'may',
+    6: 'june',
+    7: 'july',
+    8: 'august',
+    9: 'september',
+    10: 'october',
+    11: 'november',
+    12: 'december',
+  };
+
   const getSubtitle = (item: any) => {
     switch (entity) {
       case 'family':
@@ -47,6 +62,8 @@ export const List: FC<IListProps> = ({
         return `${item.orderName} / ${item.familyName}`;
       case 'news':
         return item.subtitle;
+      case 'monthBird':
+        return i18n[`${months[item.month]}`];
       default:
         return '';
     }

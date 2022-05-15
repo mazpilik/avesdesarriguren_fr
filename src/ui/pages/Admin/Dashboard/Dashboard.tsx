@@ -12,7 +12,7 @@ import { useDashboardCard } from './_functions/useDashboardCard';
 export const Dashboard = () => {
   const birdsCard = useDashboardCard('birds');
   const newsCard = useDashboardCard('news');
-  const usersCard = useDashboardCard('user');
+  const usersCard = useDashboardCard('monthbird');
   const familyCard = useDashboardCard('family');
   const orderCard = useDashboardCard('order');
 
