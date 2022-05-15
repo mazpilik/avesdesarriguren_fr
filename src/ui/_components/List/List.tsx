@@ -30,12 +30,23 @@ export const List: FC<IListProps> = ({
     navigate(route);
   };
 
+  const getTitle = (item: any) => {
+    switch (entity) {
+      case 'news':
+        return item.title;
+      default:
+        return item.name;
+    }
+  };
+
   const getSubtitle = (item: any) => {
     switch (entity) {
       case 'family':
         return item.orderName;
       case 'bird':
         return `${item.orderName} / ${item.familyName}`;
+      case 'news':
+        return item.subtitle;
       default:
         return '';
     }
@@ -44,8 +55,9 @@ export const List: FC<IListProps> = ({
   const getImage = (item: any) => {
     switch (entity) {
       case 'bird':
-
         return (<ListItemImage src={`${process.env.REACT_APP_API_URL}/images/birds/${item.images[0].img}`} alt="bird" />);
+      case 'news':
+        return item.img ? (<ListItemImage src={`${process.env.REACT_APP_API_URL}/images/news/${item.img}`} alt="news" />) : null;
       default:
         return '';
     }
@@ -65,7 +77,7 @@ export const List: FC<IListProps> = ({
         <div>Loading...</div>
       ) : (
         listItems.map((item: any) => (
-          <AdminCard className="listCard" title={item.name} subTitle={getSubtitle(item)} key={uniqueId()}>
+          <AdminCard className="listCard" title={getTitle(item)} subTitle={getSubtitle(item)} key={uniqueId()}>
             {getImage(item)}
             <Actions>
               <EditBtn onClick={() => navigateToEdit(item.id)}>{i18n.edit}</EditBtn>

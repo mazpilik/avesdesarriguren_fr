@@ -10,11 +10,12 @@ export const routes = {
   EDIT_ORDER: '/shkud/order/edit/:orderId',
   EDIT_FAMILY: '/shkud/family/edit/:familyId',
   EDIT_BIRD: '/shkud/bird/edit/:birdId',
+  EDIT_NEWS: '/shkud/news/edit/:newsId',
   HOME: '/home',
   LIST_BIRDS: '/shkud/birds/list',
   LIST_ORDER: 'shkud/order/list',
   LIST_FAMILIES: 'shkud/family/list',
-  LIST_NEWS: '/shkud/news',
+  LIST_NEWS: '/shkud/news/list',
   LIST_USERS: '/shkud/users',
   LOGIN: '/login',
 };

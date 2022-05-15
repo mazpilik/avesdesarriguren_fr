@@ -4,29 +4,33 @@ export type NewsDataT = {
   body: string;
   lang: string
 }
+export type NewsImageT = {
+  img: string;
+  checked: boolean;
+}
 export type NewsState = {
-  newsId?: number;
-  step: number;
+  newsId: number;
   userId: number;
   newsData: NewsDataT[];
+  img: NewsImageT;
 }
-export enum AddNewssActions {
+export enum UpdateNewsActions {
   setBasicInfo = 'SET_BASIC_INFO',
   setAdditionalInfo = 'SET_ADDITIONAL_INFO',
-  setNextStep = 'SET_NEXT_STEP',
-  setPrevStep = 'SET_PREV_STEP',
   setLang='SET_LANG',
   setId = 'SET_ID',
   resetState = 'RESET_STATE',
   setUserId = 'SET_USER_ID',
+  setAllState = 'SET_ALL_STATE',
+  removeImage = 'REMOVE_IMAGE',
 }
 export type NewsAction = {
-  type: AddNewssActions;
+  type: UpdateNewsActions;
   payload: any;
 }
 
 export const defaultNewsState: NewsState = {
-  step: 0,
+  newsId: 0,
   userId: 0,
   newsData: [
     {
@@ -42,10 +46,13 @@ export const defaultNewsState: NewsState = {
       lang: 'eus',
     },
   ],
+  img: {
+    img: '',
+    checked: false,
+  },
 };
 
 export const mockNews: NewsState = {
-  step: 1,
   newsId: 30,
   userId: 1,
   newsData: [
@@ -62,37 +69,44 @@ export const mockNews: NewsState = {
       lang: 'eus',
     },
   ],
+  img: {
+    img: '',
+    checked: false,
+  },
 };
 
-export const addNewsReducer = (state: NewsState, { type, payload }: NewsAction): NewsState => {
+export const updateNewsReducer = (state: NewsState, { type, payload }: NewsAction): NewsState => {
   switch (type) {
-    case AddNewssActions.setNextStep:
+    case UpdateNewsActions.setAllState:
       return {
         ...state,
-        step: state.step + 1,
+        ...payload,
       };
-    case AddNewssActions.setPrevStep:
-      return {
-        ...state,
-        step: state.step - 1,
-      };
-    case AddNewssActions.setAdditionalInfo:
+    case UpdateNewsActions.setAdditionalInfo:
       return {
         ...state,
         newsData: payload,
       };
-    case AddNewssActions.setId:
+    case UpdateNewsActions.setId:
       return {
         ...state,
         newsId: payload,
       };
-    case AddNewssActions.setUserId:
+    case UpdateNewsActions.setUserId:
       return {
         ...state,
         userId: payload,
       };
-    case AddNewssActions.resetState:
+    case UpdateNewsActions.resetState:
       return defaultNewsState;
+    case UpdateNewsActions.removeImage:
+      return {
+        ...state,
+        img: {
+          ...state.img,
+          checked: payload,
+        },
+      };
     default:
       return state;
   }

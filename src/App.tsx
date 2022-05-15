@@ -29,6 +29,8 @@ import { PrivateRoute } from './ui/_components/PrivateRoute/PrivateRoute';
 import { ThemeProviderWrapper } from './ui/theme/ThemeProviderWrapper';
 import { UserChecker } from './ui/_components/UserChecker/UserChecker';
 import { EditBird } from './ui/pages/Admin/Bird/EditBird';
+import { ListNews } from './ui/pages/Admin/News/ListNews';
+import { EditNews } from './ui/pages/Admin/News/EditNews';
 
 const App: FC = () => (
   <BrowserRouter>
@@ -45,6 +47,7 @@ const App: FC = () => (
             <Route path={routes.ADD_FAMILY} element={<PrivateRoute component={AddFamily} />} />
             <Route path={routes.ADD_ORDER} element={<PrivateRoute component={AddOrder} />} />
             <Route path={routes.LIST_BIRDS} element={<PrivateRoute component={ListBirds} />} />
+            <Route path={routes.LIST_NEWS} element={<PrivateRoute component={ListNews} />} />
             <Route path={routes.LIST_ORDER} element={<PrivateRoute component={ListOrders} />} />
             <Route
               path={routes.LIST_FAMILIES}
@@ -53,6 +56,7 @@ const App: FC = () => (
             <Route path={routes.EDIT_ORDER} element={<PrivateRoute component={EditOrder} />} />
             <Route path={routes.EDIT_FAMILY} element={<PrivateRoute component={EditFamily} />} />
             <Route path={routes.EDIT_BIRD} element={<PrivateRoute component={EditBird} />} />
+            <Route path={routes.EDIT_NEWS} element={<PrivateRoute component={EditNews} />} />
             <Route path={routes.ADD_NEWS} element={<PrivateRoute component={AddNews} />} />
             <Route path={routes.ADD_USER} element={<PrivateRoute component={AddUser} />} />
           </Routes>

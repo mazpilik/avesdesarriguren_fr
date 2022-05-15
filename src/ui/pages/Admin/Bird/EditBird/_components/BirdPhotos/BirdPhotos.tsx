@@ -83,11 +83,12 @@ export const BirdPhotos: React.FC<Props> = ({
       <ul>
         {photos.map((photo) => (
           <ImagesWrapper key={uniqueId()}>
-            <BirdImageElement checked={photo.checked} alt={photo.img} src={`${process.env.REACT_APP_IMAGES_URL}/${photo.img}`} />
+            <BirdImageElement checked={photo.checked} alt={photo.img} src={`${process.env.REACT_APP_IMAGES_URL}/birds/${photo.img}`} />
             <Checkbox onChange={updateImage} value={photo} checked={photo.checked} />
           </ImagesWrapper>
         ))}
       </ul>
+
       <div className="card">
         <h5>{i18n.addImagesTitle}</h5>
         <FileUpload ref={fileUpload} mode="basic" onUpload={clearFiles} multiple name="demo[]" url="https://primefaces.org/primereact/showcase/upload.php" accept="image/*" customUpload uploadHandler={myUpload} />

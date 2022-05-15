@@ -124,5 +124,10 @@
   "newsPhotosStep": "Fotos de noticias",
   "title": "Título",
   "subtitle": "Subtítulo",
-  "content": "Contenido"
+  "content": "Contenido",
+  "errorCreateNews": "No es posible crear la noticia",
+  "newsCreated": "Noticia creada con éxito",
+  "uploadNewsImagesTitle": "Subir imágenes",
+  "listNewsSectionTitle": "Noticias",
+  "newsEditSectionTitle": "Editar noticia"
 }

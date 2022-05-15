@@ -1,5 +1,8 @@
 import React, { useRef } from 'react';
 import { useRecoilValue } from 'recoil';
+import { uniqueId } from 'lodash';
+
+import { Checkbox } from 'primereact/checkbox';
 
 import { useNotificationHook } from 'src/ui/_functions/hooks/useNotificationHook';
 
@@ -7,16 +10,23 @@ import { FileUpload } from 'primereact/fileupload';
 
 import { fileUploadService } from 'src/services/fileUploadService';
 import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
-import { AddNewssActions, NewsAction } from '../../_functions/addNewsReducer';
+import { NewsUpdateImageT } from 'src/domain/News';
+import { UpdateNewsActions, NewsAction } from '../../_functions/updateNewsReducer';
+import { BirdImageElement, ImagesWrapper } from './NewsPhotos.styles';
 
 type Props = {
-  newsId?: number | null;
-  onSetData: React.Dispatch<NewsAction>
+  newsId: number;
+  photo: NewsUpdateImageT;
+  onSetData: React.Dispatch<NewsAction>;
+  onUploadImage: () => void;
 }
-export const NewsPhotos: React.FC<Props> = ({ newsId, onSetData }) => {
+export const NewsPhotos: React.FC<Props> = ({
+  newsId, photo, onSetData, onUploadImage,
+}) => {
   const i18n = useRecoilValue(i18nAtom);
   const notifications = useNotificationHook();
   const fileUpload = useRef<FileUpload>(null);
+
   const myUpload = async (event: any) => {
     try {
       const { files } = event;
@@ -38,10 +48,11 @@ export const NewsPhotos: React.FC<Props> = ({ newsId, onSetData }) => {
           }
         }
       });
-      onSetData({ type: AddNewssActions.resetState, payload: null });
+      onSetData({ type: UpdateNewsActions.resetState, payload: null });
     } catch (error) {
       notifications.addErrorNotification(i18n.imageUploadError);
     } finally {
+      onUploadImage();
       clearFiles();
     }
   };
@@ -50,8 +61,23 @@ export const NewsPhotos: React.FC<Props> = ({ newsId, onSetData }) => {
       fileUpload.current.clear();
     }
   };
+  const updateImage = () => {
+    onSetData({
+      type: UpdateNewsActions.removeImage,
+      payload: !photo.checked,
+    });
+  };
   return (
     <div>
+      <h2>{i18n.birdImgUpdatingTitle}</h2>
+      {photo.img && (
+        <ul>
+          <ImagesWrapper key={uniqueId()}>
+            <BirdImageElement checked={photo.checked} alt={photo.img} src={`${process.env.REACT_APP_IMAGES_URL}/news/${photo.img}`} />
+            <Checkbox onChange={updateImage} value={photo} checked={photo.checked} />
+          </ImagesWrapper>
+        </ul>
+      )}
 
       <div className="card">
         <h5>{i18n.uploadNewsImagesTitle}</h5>
@@ -59,8 +85,4 @@ export const NewsPhotos: React.FC<Props> = ({ newsId, onSetData }) => {
       </div>
     </div>
   );
-};
-
-NewsPhotos.defaultProps = {
-  newsId: null,
 };

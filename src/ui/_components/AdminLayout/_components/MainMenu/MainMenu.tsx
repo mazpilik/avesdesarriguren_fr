@@ -36,7 +36,7 @@ export const MainMenu: FC<Props> = ({ isOpen, onSetIsOpen }) => {
           </MenuLink>
         </MenuItem>
         <MenuItem>
-          <MenuLink to="/shkud">
+          <MenuLink to="/shkud/news/list">
             <FontAwesomeIcon icon={faNewspaper} />
             {isOpen ? i18n.news : ''}
           </MenuLink>
