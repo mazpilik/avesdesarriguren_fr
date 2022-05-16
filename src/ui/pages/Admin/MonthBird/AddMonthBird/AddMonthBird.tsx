@@ -13,6 +13,7 @@ import { SaveBtn, CancelBtn } from 'src/ui/_components/Buttons/CustomButtons';
 import { monthBirdService } from 'src/services/monthBirdService';
 import { useNotificationHook } from 'src/ui/_functions/hooks/useNotificationHook';
 import { InputTextarea } from 'primereact/inputtextarea';
+import { InputText } from 'primereact/inputtext';
 import { parseBirdsToModel } from '../_functions/parseBirdsToModel';
 
 export const AddMonthBird = () => {
@@ -22,6 +23,8 @@ export const AddMonthBird = () => {
 
   const [month, setMonth] = useState();
   const [bird, setBird] = useState();
+  const [titleEs, setTitleEs] = useState('');
+  const [titleEus, setTitleEus] = useState('');
   const [contentEs, setContentEs] = useState('');
   const [contentEus, setContentEus] = useState('');
   const [birdsModel, setBirdsModel] = useState([]);
@@ -52,7 +55,7 @@ export const AddMonthBird = () => {
       if (month && bird) {
         const birdId = bird;
         const saved = await monthBirdService.AddMonthBird({
-          month, birdId, contentEs, contentEus,
+          month, birdId, titleEs, titleEus, contentEs, contentEus,
         });
         if (saved) {
           notifications.addSuccessNotification(i18n.monthBirdSaved);
@@ -66,12 +69,14 @@ export const AddMonthBird = () => {
   };
 
   useEffect(() => {
-    if (month && bird && contentEs && contentEus) {
+    if (
+      month && bird && titleEs && titleEus && contentEs && contentEus
+    ) {
       setIsSaveDisabled(false);
     } else {
       setIsSaveDisabled(true);
     }
-  }, [month, bird, contentEs, contentEus]);
+  }, [month, bird, titleEs, titleEus, contentEs, contentEus]);
 
   useLayoutEffect(() => {
     getBirdsFromApi();
@@ -96,6 +101,14 @@ export const AddMonthBird = () => {
             onChange={(e) => setBird(e.target.value)}
           />
           <label>{i18n.birdLabel}</label>
+        </FieldWrapper>
+        <FieldWrapper className="sh-field-wrapper p-float-label">
+          <InputText value={titleEs} onChange={(e) => setTitleEs(e.target.value)} />
+          <label>{i18n.titleLabelEs}</label>
+        </FieldWrapper>
+        <FieldWrapper className="sh-field-wrapper p-float-label">
+          <InputText value={titleEus} onChange={(e) => setTitleEus(e.target.value)} />
+          <label>{i18n.titleLabelEus}</label>
         </FieldWrapper>
         <FieldWrapper className="sh-field-wrapper p-float-label">
           <InputTextarea value={contentEs} onChange={(e) => setContentEs(e.target.value)} />

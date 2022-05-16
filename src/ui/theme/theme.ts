@@ -31,5 +31,13 @@ export const lightTheme: DefaultTheme = {
     titleColor: '#000000',
     userCardBackground: '#ebebeb',
   },
+  public: {
+    pageBackground: '#E5E5E5',
+    sectionsBackground: '#FBF6F6',
+    title1: '#659E38',
+    outlinedBtnColor: '#659E38',
+    textSecondary: '#666666',
+    greenCards: 'rgba(101, 158, 56, 0.1)',
+  },
 };
 export const darkTheme: DefaultTheme = {};

@@ -139,5 +139,13 @@
   "contentLabelEs": "Contenido",
   "contentLabelEus": "Testua",
   "monthBird": "Ave del mes",
-  "monthBirdEditSectionTitle": "Editar ave del mes"
+  "monthBirdEditSectionTitle": "Editar ave del mes",
+  "publicSiteTitle": "Aves de Sarriguren",
+  "titleLabelEs": "Título",
+  "titleLabelEus": "Izenburua",
+  "discoverMonthBirdBtn": "Descubre el ave del mes",
+  "whatIsThisTitle": "¿Y esto es...",
+  "whatIsThisContent": "<p>Si, has acertado; esto es ni más ni menos el sitio donde puedes encontrar información de las aves que viven con nosotros en el municipio.</p><p>Esas que están ahí, en el parque, en los tejados, aquellas que se esconden en los arbustos o las que nos observan desde los chopos de la regata.</p><p>Aquí vas a poder encontrar información sobre todas ellas.</p>",
+  "discoverThem": "Descúbrelas",
+  "homeNewsTitle": "Noticias"
 }

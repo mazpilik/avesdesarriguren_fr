@@ -62,3 +62,12 @@ export const CancelBtn = styled(AdminBtn)`
       opacity: 0.5;
     }
 `;
+
+export const OutlinedBtn = styled.button`
+  border: 2px solid ${({ theme }) => theme.public.outlinedBtnColor};
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: ${({ theme }) => theme.public.textSecondary};
+  cursor: pointer;
+`;

@@ -9,6 +9,7 @@ import { monthBirdService } from 'src/services/monthBirdService';
 import { AdminLayout } from 'src/ui/_components/AdminLayout/AdminLayout';
 import { CancelBtn, SaveBtn } from 'src/ui/_components/Buttons/CustomButtons';
 import { ActionButtons, FieldWrapper } from 'src/ui/_components/Form';
+import { InputText } from 'primereact/inputtext';
 
 import { i18nAtom } from 'src/ui/_functions/atoms/atoms';
 import { birdService } from 'src/services/birdService';
@@ -49,6 +50,8 @@ export const EditMonthBird = () => {
             birdId: monthBird.birdId,
             month: monthBird.month,
             name: monthBird.name,
+            titleEs: monthBird.title_es,
+            titleEus: monthBird.title_eus,
             contentEs: monthBird.content_es,
             contentEus: monthBird.content_eus,
           },
@@ -110,6 +113,32 @@ export const EditMonthBird = () => {
             })}
           />
           <label>{i18n.birdLabel}</label>
+        </FieldWrapper>
+        <FieldWrapper className="sh-field-wrapper p-float-label">
+          <InputText
+            value={mbState.titleEs}
+            onChange={(e) => setMbState({
+              type: MonthBirdActionType.monthBirdUpdate,
+              payload: {
+                key: 'titleEs',
+                value: e.target.value,
+              },
+            })}
+          />
+          <label>{i18n.titleEsLabel}</label>
+        </FieldWrapper>
+        <FieldWrapper className="sh-field-wrapper p-float-label">
+          <InputText
+            value={mbState.titleEus}
+            onChange={(e) => setMbState({
+              type: MonthBirdActionType.monthBirdUpdate,
+              payload: {
+                key: 'titleEus',
+                value: e.target.value,
+              },
+            })}
+          />
+          <label>{i18n.titleEusLabel}</label>
         </FieldWrapper>
         <FieldWrapper className="sh-field-wrapper p-float-label">
           <InputTextarea
