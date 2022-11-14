@@ -1,18 +1,20 @@
 import { MonthBirdState } from 'src/domain/MonthBird';
 
 type MonthBirdAction = {
-  type: string,
-  payload: any,
-}
+  type: string;
+  payload: any;
+};
 
 export enum MonthBirdActionType {
-  monthBirdUpdate='UPDATE_MONTH_BIRD',
-  setState='SET_STATE',
+  monthBirdUpdate = 'UPDATE_MONTH_BIRD',
+  setState = 'SET_STATE'
 }
 
 export const mbDefaultState: MonthBirdState = {
   month: 0,
   birdId: 0,
+  titleEs: '',
+  titleEus: '',
   contentEs: '',
   contentEus: '',
 };
